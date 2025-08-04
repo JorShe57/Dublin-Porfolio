@@ -61,7 +61,7 @@ const Navigation: React.FC = () => {
                 onClick={closeMobileMenu}
               >
                 <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-dublin-primary to-dublin-accent rounded-lg flex items-center justify-center shadow-md">
-                  <span className="text-white font-bold text-sm md:text-base">JN</span>
+                  <span className="text-white font-bold text-sm md:text-base">JS</span>
                 </div>
                 <div className="hidden sm:block">
                   <span className="text-dublin-primary font-bold text-lg md:text-xl">Jorden Shevel</span>
@@ -162,7 +162,7 @@ const Navigation: React.FC = () => {
               <div className="flex items-center justify-between p-6 border-b border-dublin-gray-100">
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-gradient-to-br from-dublin-primary to-dublin-accent rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">JN</span>
+                    <span className="text-white font-bold text-sm">JS</span>
                   </div>
                   <div>
                     <span className="text-dublin-primary font-bold text-lg">Jorden Shevel</span>
