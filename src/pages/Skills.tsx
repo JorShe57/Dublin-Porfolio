@@ -305,16 +305,16 @@ const Skills: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid-responsive-3 xl:grid-cols-3">
+          <div className="grid-responsive-3 xl:grid-cols-3 grid-stable-heights skills">
             {skillCategories.map((category, categoryIndex) => (
               <motion.div
                 key={category.category}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: categoryIndex * 0.1 }}
-                className="card"
+                className="card-skills prevent-layout-shift"
               >
-                <div className={`${category.color} text-white card-padding`}>
+                <div className={`${category.color} text-white card-padding flex-shrink-0`}>
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg sm:text-xl font-bold">{category.category}</h3>
                     <span className="text-xs bg-white bg-opacity-20 px-2 py-1 rounded-full">
@@ -323,11 +323,11 @@ const Skills: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="card-padding space-y-4">
+                <div className="card-padding space-y-4 flex-grow">
                   {category.skills.map((skill, skillIndex) => (
                     <motion.div
                       key={skill.name}
-                      className="group cursor-pointer"
+                      className="group cursor-pointer smooth-layout-fast"
                       onHoverStart={() => setActiveSkill(`${category.category}-${skill.name}`)}
                       onHoverEnd={() => setActiveSkill('')}
                       whileHover={{ scale: 1.01 }}
@@ -350,13 +350,16 @@ const Skills: React.FC = () => {
                         />
                       </div>
 
-                      {activeSkill === `${category.category}-${skill.name}` && (
+                      {/* Reserved space for hover content to prevent layout shifts */}
+                      <div className="mt-3 overflow-hidden">
                         <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="bg-dublin-gray-50 p-3 sm:p-4 rounded-lg mt-3"
+                          initial={false}
+                          animate={{
+                            height: activeSkill === `${category.category}-${skill.name}` ? 'auto' : 0,
+                            opacity: activeSkill === `${category.category}-${skill.name}` ? 1 : 0
+                          }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="bg-dublin-gray-50 p-3 sm:p-4 rounded-lg"
                         >
                           <p className="text-sm text-dublin-gray-700 mb-2">{skill.description}</p>
                           <div className="text-xs text-dublin-gray-600 mb-2">
@@ -366,7 +369,7 @@ const Skills: React.FC = () => {
                             📊 {skill.demonstration}
                           </div>
                         </motion.div>
-                      )}
+                      </div>
                     </motion.div>
                   ))}
                 </div>

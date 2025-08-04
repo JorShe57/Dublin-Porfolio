@@ -220,9 +220,9 @@ const Portfolio: React.FC = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+      className="card-portfolio prevent-layout-shift hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
     >
-      <div className="h-48 bg-gradient-to-br from-dublin-primary to-dublin-primary-light flex items-center justify-center relative overflow-hidden">
+      <div className="h-48 bg-gradient-to-br from-dublin-primary to-dublin-primary-light flex items-center justify-center relative overflow-hidden flex-shrink-0">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative z-10 text-center text-white">
           <h3 className="text-xl font-bold mb-2">{project.title}</h3>
@@ -233,12 +233,12 @@ const Portfolio: React.FC = () => {
         </div>
       </div>
       
-      <div className="p-6">
-        <p className="text-dublin-gray-600 mb-4 line-clamp-3">
+      <div className="p-6 flex-grow flex flex-col">
+        <p className="text-dublin-gray-600 mb-4 line-clamp-3 flex-grow">
           {project.description}
         </p>
         
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mt-auto">
           <button
             onClick={() => setSelectedProject(project.id)}
             className="bg-dublin-primary text-white px-4 py-2 rounded-lg hover:bg-dublin-primary-dark transition-colors duration-200 flex items-center gap-2"
@@ -809,7 +809,7 @@ const Portfolio: React.FC = () => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+                  className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 grid-stable-heights portfolio"
                 >
                   {filteredProjects.map((project, index) => (
                     <ProjectCard key={project.id} project={project} index={index} />

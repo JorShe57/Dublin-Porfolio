@@ -152,13 +152,13 @@ const ActionPlan: React.FC = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="card mb-6"
+      className="card mb-6 prevent-layout-shift"
     >
       <div 
         className="card-padding cursor-pointer"
         onClick={() => setExpandedWeek(expandedWeek === weekKey ? null : weekKey)}
       >
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-4">
           <h3 className="text-xl font-bold text-dublin-primary">{week.title}</h3>
           <div className={`transform transition-transform ${expandedWeek === weekKey ? 'rotate-180' : ''}`}>
             <svg className="w-6 h-6 text-dublin-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -167,11 +167,15 @@ const ActionPlan: React.FC = () => {
           </div>
         </div>
         
-        {expandedWeek === weekKey && (
+        {/* Reserved space for expandable content */}
+        <div className="overflow-hidden">
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={false}
+            animate={{
+              height: expandedWeek === weekKey ? 'auto' : 0,
+              opacity: expandedWeek === weekKey ? 1 : 0
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className="mt-6"
           >
             <div className="grid md:grid-cols-2 gap-6">
@@ -196,7 +200,7 @@ const ActionPlan: React.FC = () => {
               </div>
             </div>
           </motion.div>
-        )}
+        </div>
       </div>
     </motion.div>
   )
@@ -229,27 +233,38 @@ const ActionPlan: React.FC = () => {
           </motion.div>
 
           {/* Mindset Principles */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 grid-stable-heights">
             {mindsetPrinciples.map((principle, index) => (
               <motion.div
                 key={principle.title}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-all duration-300 cursor-pointer"
+                className="card-action-plan prevent-layout-shift group bg-white/10 backdrop-blur-sm p-6 rounded-xl hover:bg-white/20 transition-all duration-300 cursor-pointer"
               >
-                <h3 className="font-bold text-lg mb-2 text-dublin-accent">
-                  {principle.title}
-                </h3>
-                <p className="text-sm opacity-90 mb-4">
-                  {principle.description}
-                </p>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="border-t border-white/20 pt-4">
-                    <p className="text-xs text-dublin-accent">
-                      {principle.hoverContent}
-                    </p>
-                  </div>
+                <div className="flex-grow">
+                  <h3 className="font-bold text-lg mb-2 text-dublin-accent">
+                    {principle.title}
+                  </h3>
+                  <p className="text-sm opacity-90 mb-4">
+                    {principle.description}
+                  </p>
+                </div>
+                <div className="mt-auto overflow-hidden">
+                  <motion.div
+                    initial={false}
+                    animate={{
+                      height: 'auto',
+                      opacity: 1
+                    }}
+                    className="group-hover:opacity-100 opacity-0 transition-opacity duration-300"
+                  >
+                    <div className="border-t border-white/20 pt-4">
+                      <p className="text-xs text-dublin-accent">
+                        {principle.hoverContent}
+                      </p>
+                    </div>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}

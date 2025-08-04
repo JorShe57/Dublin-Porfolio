@@ -102,12 +102,13 @@
     @apply text-xl sm:text-2xl md:text-3xl font-bold text-dublin-primary leading-tight;
   }
 
-  /* Card Components */
+  /* Card Components - Enhanced for Layout Stability */
   .card {
     @apply bg-white rounded-xl shadow-lg hover:shadow-xl 
            transition-all duration-300 
            border border-dublin-gray-100
-           overflow-hidden;
+           overflow-hidden
+           min-h-[280px];
   }
 
   .card-interactive {
@@ -117,6 +118,23 @@
 
   .card-padding {
     @apply p-4 sm:p-6 lg:p-8;
+  }
+
+  /* Layout Shift Prevention Cards */
+  .card-skills {
+    @apply card min-h-[420px] flex flex-col;
+  }
+
+  .card-portfolio {
+    @apply card min-h-[380px] flex flex-col;
+  }
+
+  .card-action-plan {
+    @apply card min-h-[240px] flex flex-col;
+  }
+
+  .card-dublin-research {
+    @apply card min-h-[320px] flex flex-col;
   }
 
   /* Form Components */
@@ -168,6 +186,36 @@
     @apply h-full bg-gradient-to-r from-dublin-primary to-dublin-accent rounded-full 
            transition-all duration-500 ease-out;
   }
+
+  /* Expandable Content Containers - Layout Shift Prevention */
+  .expandable-content {
+    @apply overflow-hidden transition-all duration-300 ease-in-out;
+  }
+
+  .expandable-content[data-expanded="true"] {
+    @apply max-h-[500px] opacity-100;
+  }
+
+  .expandable-content[data-expanded="false"] {
+    @apply max-h-0 opacity-0;
+  }
+
+  /* Grid Item Height Consistency */
+  .grid-item-consistent {
+    @apply flex flex-col min-h-[300px];
+  }
+
+  .grid-item-skills {
+    @apply grid-item-consistent min-h-[420px];
+  }
+
+  .grid-item-portfolio {
+    @apply grid-item-consistent min-h-[380px];
+  }
+
+  .grid-item-research {
+    @apply grid-item-consistent min-h-[320px];
+  }
 }
 
 /* Animation and Utility Classes */
@@ -201,6 +249,42 @@
     animation: bounceGentle 2s ease-in-out infinite;
   }
 
+  /* Layout Shift Prevention Utilities */
+  .prevent-layout-shift {
+    @apply will-change-transform;
+    contain: layout style;
+  }
+
+  .aspect-ratio-16-9 {
+    aspect-ratio: 16 / 9;
+  }
+
+  .aspect-ratio-4-3 {
+    aspect-ratio: 4 / 3;
+  }
+
+  .aspect-ratio-1-1 {
+    aspect-ratio: 1 / 1;
+  }
+
+  .min-height-stable {
+    min-height: calc(100vh - 200px);
+  }
+
+  /* Content Size Reservations */
+  .reserve-hover-space {
+    @apply relative;
+  }
+
+  .reserve-hover-space::after {
+    content: '';
+    @apply absolute bottom-0 left-0 right-0 h-0 transition-all duration-300;
+  }
+
+  .reserve-hover-space:hover::after {
+    @apply h-16;
+  }
+
   /* Responsive text utilities */
   .text-responsive-xs {
     @apply text-xs sm:text-sm;
@@ -231,7 +315,7 @@
     @apply space-x-4 sm:space-x-6 lg:space-x-8;
   }
 
-  /* Grid utilities */
+  /* Grid utilities - Enhanced for Layout Stability */
   .grid-responsive-2 {
     @apply grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8;
   }
@@ -242,6 +326,23 @@
 
   .grid-responsive-4 {
     @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8;
+  }
+
+  /* Stable Grid Items */
+  .grid-stable-heights > * {
+    @apply min-h-[300px] flex flex-col;
+  }
+
+  .grid-stable-heights.skills > * {
+    @apply min-h-[420px];
+  }
+
+  .grid-stable-heights.portfolio > * {
+    @apply min-h-[380px];
+  }
+
+  .grid-stable-heights.research > * {
+    @apply min-h-[320px];
   }
 
   /* Focus utilities for better accessibility */
@@ -264,6 +365,19 @@
 
   .backdrop-blur-strong {
     backdrop-filter: blur(16px);
+  }
+
+  /* Smooth Transitions for Layout Changes */
+  .smooth-layout {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .smooth-layout-fast {
+    @apply transition-all duration-150 ease-in-out;
+  }
+
+  .smooth-layout-slow {
+    @apply transition-all duration-500 ease-in-out;
   }
 }
 
@@ -363,6 +477,15 @@
   .heading-secondary {
     @apply text-xl leading-tight;
   }
+
+  /* Mobile-specific layout shift prevention */
+  .card {
+    @apply min-h-[240px];
+  }
+
+  .grid-stable-heights > * {
+    @apply min-h-[240px];
+  }
 }
 
 /* High contrast mode support */
@@ -392,6 +515,13 @@
   .animate-bounce-gentle,
   .animate-pulse-gentle {
     animation: none;
+  }
+
+  /* Disable layout shift animations when motion is reduced */
+  .smooth-layout,
+  .smooth-layout-fast,
+  .smooth-layout-slow {
+    transition: none !important;
   }
 }
 

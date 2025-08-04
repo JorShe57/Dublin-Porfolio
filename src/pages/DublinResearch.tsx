@@ -249,39 +249,46 @@ const DublinResearch: React.FC = () => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       onMouseEnter={() => setHoveredPlatform(platform.name)}
       onMouseLeave={() => setHoveredPlatform(null)}
-      className={`card p-6 cursor-pointer transition-all duration-300 ${
+      className={`card-dublin-research prevent-layout-shift cursor-pointer transition-all duration-300 ${
         hoveredPlatform === platform.name ? 'shadow-xl scale-105' : ''
       }`}
     >
-      <div className="flex items-center justify-between mb-4">
-        <div className={`w-3 h-3 rounded-full ${platform.color}`}></div>
-        <span className="text-sm font-medium text-dublin-gray-500">{platform.platform}</span>
-      </div>
-      <h3 className="text-lg font-bold text-dublin-primary mb-2">{platform.name}</h3>
-      <div className="space-y-2 mb-4">
-        <div className="flex justify-between">
-          <span className="text-dublin-gray-600">Followers:</span>
-          <span className="font-semibold">{platform.followers}</span>
+      <div className="flex flex-col h-full">
+        <div className="flex items-center justify-between mb-4">
+          <div className={`w-3 h-3 rounded-full ${platform.color}`}></div>
+          <span className="text-sm font-medium text-dublin-gray-500">{platform.platform}</span>
         </div>
-        <div className="flex justify-between">
-          <span className="text-dublin-gray-600">Engagement:</span>
-          <span className="font-semibold text-dublin-accent">{platform.engagement}</span>
-        </div>
-      </div>
-      <div className="text-sm text-dublin-gray-600 mb-2">{platform.strength}</div>
-      <div className="text-xs text-dublin-gray-500">{platform.focus}</div>
-      
-      {hoveredPlatform === platform.name && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          className="mt-4 pt-4 border-t border-dublin-gray-100"
-        >
-          <div className="text-xs text-dublin-primary font-medium">
-            Recent performance trends and optimization opportunities available
+        <h3 className="text-lg font-bold text-dublin-primary mb-2">{platform.name}</h3>
+        <div className="space-y-2 mb-4 flex-grow">
+          <div className="flex justify-between">
+            <span className="text-dublin-gray-600">Followers:</span>
+            <span className="font-semibold">{platform.followers}</span>
           </div>
-        </motion.div>
-      )}
+          <div className="flex justify-between">
+            <span className="text-dublin-gray-600">Engagement:</span>
+            <span className="font-semibold text-dublin-accent">{platform.engagement}</span>
+          </div>
+        </div>
+        <div className="text-sm text-dublin-gray-600 mb-2">{platform.strength}</div>
+        <div className="text-xs text-dublin-gray-500 mb-4">{platform.focus}</div>
+        
+        {/* Reserved space for hover content */}
+        <div className="mt-auto overflow-hidden">
+          <motion.div
+            initial={false}
+            animate={{
+              height: hoveredPlatform === platform.name ? 'auto' : 0,
+              opacity: hoveredPlatform === platform.name ? 1 : 0
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="pt-4 border-t border-dublin-gray-100"
+          >
+            <div className="text-xs text-dublin-primary font-medium">
+              Recent performance trends and optimization opportunities available
+            </div>
+          </motion.div>
+        </div>
+      </div>
     </motion.div>
   )
 
@@ -361,7 +368,7 @@ const DublinResearch: React.FC = () => {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 grid-stable-heights research">
                 {digitalPlatforms.map((platform, index) => (
                   <PlatformCard key={platform.name} platform={platform} index={index} />
                 ))}
@@ -446,14 +453,14 @@ const DublinResearch: React.FC = () => {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <div className="grid md:grid-cols-2 gap-8 mb-12 grid-stable-heights research">
                 {contentPillars.map((pillar, index) => (
                   <motion.div
                     key={pillar.pillar}
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="card p-6"
+                    className="card-dublin-research prevent-layout-shift"
                   >
                     <div className="flex items-center mb-4">
                       <div className={`w-4 h-4 rounded-full ${pillar.color} mr-3`}></div>
