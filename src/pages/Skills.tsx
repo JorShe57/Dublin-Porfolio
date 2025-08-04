@@ -602,17 +602,6 @@ const Skills: React.FC = () => {
               transition={{ duration: 0.4, delay: 0.1 }}
               className="card text-center card-padding"
             >
-              <div className="text-3xl sm:text-4xl mb-4">📊</div>
-              <h3 className="text-lg sm:text-xl font-bold text-dublin-primary mb-2">MBA</h3>
-              <p className="text-dublin-gray-600 text-sm sm:text-base">Forensic & Fraud Examination (Level 9 equivalent)</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="card text-center card-padding"
-            >
               <div className="text-3xl sm:text-4xl mb-4">🔄</div>
               <h3 className="text-lg sm:text-xl font-bold text-dublin-primary mb-2">Continuous Learning</h3>
               <p className="text-dublin-gray-600 text-sm sm:text-base">Digital marketing, municipal communications training</p>

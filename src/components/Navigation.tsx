@@ -57,15 +57,15 @@ const Navigation: React.FC = () => {
             >
               <Link 
                 to="/" 
-                className="flex items-center space-x-3"
+                className="flex items-center space-x-2 sm:space-x-3"
                 onClick={closeMobileMenu}
               >
                 <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-dublin-primary to-dublin-accent rounded-lg flex items-center justify-center shadow-md">
                   <span className="text-white font-bold text-sm md:text-base">JS</span>
                 </div>
-                <div className="hidden sm:block">
-                  <span className="text-dublin-primary font-bold text-lg md:text-xl">Jorden Shevel</span>
-                  <p className="text-dublin-gray-600 text-xs md:text-sm -mt-1">Dublin Portfolio</p>
+                <div className="block">
+                  <span className="text-dublin-primary font-bold text-base sm:text-lg md:text-xl">Jorden Shevel</span>
+                  <p className="text-dublin-gray-600 text-xs md:text-sm -mt-0.5 sm:-mt-1">Dublin Portfolio</p>
                 </div>
               </Link>
             </motion.div>

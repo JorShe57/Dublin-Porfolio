@@ -78,11 +78,11 @@
   
   /* Layout Components - Mobile First */
   .section-padding {
-    @apply py-12 px-4 sm:py-16 sm:px-6 lg:py-20 lg:px-8;
+    @apply py-8 px-4 sm:py-12 sm:px-6 lg:py-20 lg:px-8;
   }
   
   .container-width {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   /* Text Components */
@@ -91,15 +91,15 @@
   }
 
   .heading-primary {
-    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-dublin-primary leading-tight;
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-dublin-primary leading-tight;
   }
 
   .heading-secondary {
-    @apply text-2xl sm:text-3xl md:text-4xl font-bold text-dublin-primary leading-tight;
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-dublin-primary leading-tight;
   }
 
   .heading-tertiary {
-    @apply text-xl sm:text-2xl md:text-3xl font-bold text-dublin-primary leading-tight;
+    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-dublin-primary leading-tight;
   }
 
   /* Card Components - Enhanced for Layout Stability */
@@ -461,30 +461,72 @@
   .btn-primary,
   .btn-accent,
   .btn-secondary {
-    @apply text-sm min-h-[44px];
+    @apply text-sm min-h-[44px] px-4 py-3;
   }
 
   /* Better spacing on mobile */
   .section-padding {
-    @apply py-8 px-4;
+    @apply py-6 px-3;
+  }
+
+  .container-width {
+    @apply px-3;
   }
 
   /* Improve readability on mobile */
   .heading-primary {
-    @apply text-2xl leading-tight;
+    @apply text-xl leading-tight;
   }
 
   .heading-secondary {
-    @apply text-xl leading-tight;
+    @apply text-lg leading-tight;
+  }
+
+  .heading-tertiary {
+    @apply text-base leading-tight;
   }
 
   /* Mobile-specific layout shift prevention */
   .card {
-    @apply min-h-[240px];
+    @apply min-h-[240px] p-4;
+  }
+
+  .card-padding {
+    @apply p-3 sm:p-4;
   }
 
   .grid-stable-heights > * {
-    @apply min-h-[240px];
+    @apply min-h-[220px];
+  }
+
+  /* Tighter spacing for mobile */
+  .space-y-responsive {
+    @apply space-y-3;
+  }
+
+  .space-x-responsive {
+    @apply space-x-3;
+  }
+
+  /* Mobile text sizes */
+  .text-responsive-xs {
+    @apply text-xs;
+  }
+
+  .text-responsive-sm {
+    @apply text-xs;
+  }
+
+  .text-responsive-base {
+    @apply text-sm;
+  }
+
+  .text-responsive-lg {
+    @apply text-base;
+  }
+
+  .text-responsive-xl {
+    @apply text-lg;
   }
 }
 
