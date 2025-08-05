@@ -243,53 +243,58 @@ const DublinResearch: React.FC = () => {
     )
 
   const PlatformCard: React.FC<{ platform: any; index: number }> = ({ platform, index }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      onMouseEnter={() => setHoveredPlatform(platform.name)}
-      onMouseLeave={() => setHoveredPlatform(null)}
-      className={`card-dublin-research prevent-layout-shift cursor-pointer transition-all duration-300 ${
-        hoveredPlatform === platform.name ? 'shadow-xl scale-105' : ''
-      }`}
-    >
+    <div className="bg-white rounded-xl shadow-lg border border-dublin-gray-100 p-6 hover:shadow-xl transition-shadow duration-300">
       <div className="flex flex-col h-full">
+        {/* Platform Header */}
         <div className="flex items-center justify-between mb-4">
-          <div className={`w-3 h-3 rounded-full ${platform.color}`}></div>
-          <span className="text-sm font-medium text-dublin-gray-500">{platform.platform}</span>
-        </div>
-        <h3 className="text-lg font-bold text-dublin-primary mb-2">{platform.name}</h3>
-        <div className="space-y-2 mb-4 flex-grow">
-          <div className="flex justify-between">
-            <span className="text-dublin-gray-600">Followers:</span>
-            <span className="font-semibold">{platform.followers}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-dublin-gray-600">Engagement:</span>
-            <span className="font-semibold text-dublin-accent">{platform.engagement}</span>
+          <div className="flex items-center space-x-3">
+            <div className={`w-4 h-4 rounded-full ${platform.color}`}></div>
+            <span className="text-sm font-semibold text-dublin-gray-600 uppercase tracking-wide">
+              {platform.platform}
+            </span>
           </div>
         </div>
-        <div className="text-sm text-dublin-gray-600 mb-2">{platform.strength}</div>
-        <div className="text-xs text-dublin-gray-500 mb-4">{platform.focus}</div>
-        
-        {/* Reserved space for hover content */}
-        <div className="mt-auto overflow-hidden">
-          <motion.div
-            initial={false}
-            animate={{
-              height: hoveredPlatform === platform.name ? 'auto' : 0,
-              opacity: hoveredPlatform === platform.name ? 1 : 0
-            }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="pt-4 border-t border-dublin-gray-100"
-          >
-            <div className="text-xs text-dublin-primary font-medium">
-              Recent performance trends and optimization opportunities available
+
+        {/* Platform Name */}
+        <h3 className="text-xl font-bold text-dublin-primary mb-4">{platform.name}</h3>
+
+        {/* Metrics Grid */}
+        <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="bg-dublin-gray-50 p-3 rounded-lg text-center">
+            <div className="text-lg font-bold text-dublin-primary">{platform.followers}</div>
+            <div className="text-xs text-dublin-gray-600 uppercase tracking-wide">
+              {platform.platform === 'Website Hub' ? 'Monthly Visitors' : 'Followers'}
             </div>
-          </motion.div>
+          </div>
+          <div className="bg-dublin-accent/10 p-3 rounded-lg text-center">
+            <div className="text-lg font-bold text-dublin-accent">{platform.engagement}</div>
+            <div className="text-xs text-dublin-gray-600 uppercase tracking-wide">
+              {platform.platform === 'Website Hub' ? 'Avg. Session' : 'Engagement'}
+            </div>
+          </div>
+        </div>
+
+        {/* Platform Strength */}
+        <div className="mb-4 flex-grow">
+          <h4 className="text-sm font-semibold text-dublin-primary mb-2">Strength</h4>
+          <p className="text-sm text-dublin-gray-700 leading-relaxed">{platform.strength}</p>
+        </div>
+
+        {/* Target Audience */}
+        <div className="mt-auto">
+          <h4 className="text-sm font-semibold text-dublin-primary mb-2">Target Audience</h4>
+          <p className="text-xs text-dublin-gray-600 bg-dublin-gray-50 p-2 rounded">{platform.focus}</p>
+        </div>
+
+        {/* Platform Badge */}
+        <div className="mt-4 pt-4 border-t border-dublin-gray-100">
+          <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-white ${platform.color}`}>
+            {platform.platform === 'Website Hub' ? '🌐' : platform.platform === 'TikTok' ? '📱' : platform.platform === 'Instagram' ? '📸' : platform.platform === 'LinkedIn' ? '💼' : platform.platform === 'Facebook' ? '👥' : '🐦'} 
+            {platform.platform}
+          </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 
   return (

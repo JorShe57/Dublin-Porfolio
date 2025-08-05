@@ -216,19 +216,14 @@ const Portfolio: React.FC = () => {
     : projects.filter(project => project.category === selectedFilter)
 
   const ProjectCard: React.FC<{ project: any, index: number }> = ({ project, index }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="card-portfolio prevent-layout-shift hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-    >
+    <div className="card-portfolio prevent-layout-shift hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
       <div className="h-48 bg-gradient-to-br from-dublin-primary to-dublin-primary-light flex items-center justify-center relative overflow-hidden flex-shrink-0">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative z-10 text-center text-white">
           <h3 className="text-xl font-bold mb-2">{project.title}</h3>
           <p className="text-dublin-gray-100 text-sm">{project.impact}</p>
         </div>
-        <div className="absolute top-4 right-4 bg-dublin-accent text-white px-2 py-1 rounded-full text-xs font-medium">
+        <div className="absolute top-4 right-4 bg-dublin-accent text-white px-3 py-1 rounded-full text-xs font-semibold">
           {project.year}
         </div>
       </div>
@@ -261,7 +256,7 @@ const Portfolio: React.FC = () => {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 
   const ProjectModal: React.FC<{ project: any }> = ({ project }) => (
@@ -802,20 +797,11 @@ const Portfolio: React.FC = () => {
               </div>
 
               {/* Projects Grid */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={selectedFilter}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 grid-stable-heights portfolio"
-                >
-                  {filteredProjects.map((project, index) => (
-                    <ProjectCard key={project.id} project={project} index={index} />
-                  ))}
-                </motion.div>
-              </AnimatePresence>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 grid-stable-heights portfolio">
+                {filteredProjects.map((project, index) => (
+                  <ProjectCard key={project.id} project={project} index={index} />
+                ))}
+              </div>
             </div>
           </section>
 

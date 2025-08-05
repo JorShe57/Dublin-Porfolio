@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
 
 const Skills: React.FC = () => {
   const [activeSkill, setActiveSkill] = useState<string>('')
@@ -270,10 +269,7 @@ const Skills: React.FC = () => {
       {/* Hero Section */}
       <section className="section-padding bg-dublin-primary text-white">
         <div className="container-width">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <div
             className="text-center space-y-responsive"
           >
             <h1 className="heading-primary text-white">
@@ -289,7 +285,7 @@ const Skills: React.FC = () => {
               <span className="bg-dublin-accent px-3 py-2 sm:px-4 sm:py-2 rounded-full">Professional Video Production</span>
               <span className="bg-dublin-accent px-3 py-2 sm:px-4 sm:py-2 rounded-full">Analytics & Data Mastery</span>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -307,11 +303,8 @@ const Skills: React.FC = () => {
 
           <div className="grid-responsive-3 xl:grid-cols-3 grid-stable-heights skills">
             {skillCategories.map((category, categoryIndex) => (
-              <motion.div
+              <div
                 key={category.category}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: categoryIndex * 0.1 }}
                 className="card-skills prevent-layout-shift"
               >
                 <div className={`${category.color} text-white card-padding flex-shrink-0`}>
@@ -325,13 +318,11 @@ const Skills: React.FC = () => {
 
                 <div className="card-padding space-y-4 flex-grow">
                   {category.skills.map((skill, skillIndex) => (
-                    <motion.div
+                    <div
                       key={skill.name}
                       className="group cursor-pointer smooth-layout-fast"
-                      onHoverStart={() => setActiveSkill(`${category.category}-${skill.name}`)}
-                      onHoverEnd={() => setActiveSkill('')}
-                      whileHover={{ scale: 1.01 }}
-                      transition={{ duration: 0.2 }}
+                      onMouseEnter={() => setActiveSkill(`${category.category}-${skill.name}`)}
+                      onMouseLeave={() => setActiveSkill('')}
                     >
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center space-x-2 sm:space-x-3">
@@ -342,24 +333,20 @@ const Skills: React.FC = () => {
                       </div>
                       
                       <div className="progress-bar">
-                        <motion.div
+                        <div
                           className={`progress-fill ${category.color}`}
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skill.proficiency}%` }}
-                          transition={{ duration: 1, delay: categoryIndex * 0.1 + skillIndex * 0.2 }}
+                          style={{ width: `${skill.proficiency}%` }}
                         />
                       </div>
 
                       {/* Reserved space for hover content to prevent layout shifts */}
                       <div className="mt-3 overflow-hidden">
-                        <motion.div
-                          initial={false}
-                          animate={{
-                            height: activeSkill === `${category.category}-${skill.name}` ? 'auto' : 0,
-                            opacity: activeSkill === `${category.category}-${skill.name}` ? 1 : 0
-                          }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="bg-dublin-gray-50 p-3 sm:p-4 rounded-lg"
+                        <div
+                          className={`bg-dublin-gray-50 p-3 sm:p-4 rounded-lg transition-all duration-300 ease-in-out ${
+                            activeSkill === `${category.category}-${skill.name}` 
+                              ? 'max-h-40 opacity-100' 
+                              : 'max-h-0 opacity-0'
+                          }`}
                         >
                           <p className="text-sm text-dublin-gray-700 mb-2">{skill.description}</p>
                           <div className="text-xs text-dublin-gray-600 mb-2">
@@ -368,12 +355,12 @@ const Skills: React.FC = () => {
                           <div className="text-xs text-dublin-accent font-semibold">
                             📊 {skill.demonstration}
                           </div>
-                        </motion.div>
+                        </div>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -393,11 +380,8 @@ const Skills: React.FC = () => {
 
           <div className="space-y-6 lg:space-y-8">
             {campaigns.map((campaign, index) => (
-              <motion.div
+              <div
                 key={campaign.id}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
                 className={`card-interactive ${
                   activeCampaign === campaign.id ? 'ring-2 ring-dublin-accent' : ''
                 }`}
@@ -420,24 +404,18 @@ const Skills: React.FC = () => {
                         ))}
                       </div>
                     </div>
-                    <motion.button
+                    <button
                       onClick={() => setActiveCampaign(
                         activeCampaign === campaign.id ? '' : campaign.id
                       )}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
                       className="btn-primary w-full lg:w-auto"
                     >
                       {activeCampaign === campaign.id ? 'Hide Details' : 'View Process'}
-                    </motion.button>
+                    </button>
                   </div>
 
                   {activeCampaign === campaign.id && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.4 }}
+                    <div
                       className="border-t border-dublin-gray-200 pt-6"
                     >
                       <div className="grid-responsive-2 gap-6">
@@ -469,10 +447,10 @@ const Skills: React.FC = () => {
                           </div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   )}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -497,11 +475,8 @@ const Skills: React.FC = () => {
             <div className="card-padding">
               <div className="space-y-4">
                 {requirementMapping.map((item, index) => (
-                  <motion.div
+                  <div
                     key={item.requirement}
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
                     className="flex items-center justify-between p-3 sm:p-4 bg-dublin-gray-50 rounded-lg"
                   >
                     <div className="flex items-center space-x-3 sm:space-x-4">
@@ -518,7 +493,7 @@ const Skills: React.FC = () => {
                     <span className="bg-green-100 text-green-800 px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-semibold">
                       Verified
                     </span>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -541,22 +516,16 @@ const Skills: React.FC = () => {
           <div className="card">
             <div className="bg-dublin-primary text-white card-padding flex items-center justify-between">
               <h3 className="text-lg sm:text-xl font-bold">HTML/CSS Code Editor</h3>
-              <motion.button
+              <button
                 onClick={() => setShowCodeEditor(!showCodeEditor)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
                 className="bg-dublin-accent hover:bg-dublin-accent-dark px-3 py-2 sm:px-4 sm:py-2 rounded-lg font-semibold transition-colors text-sm sm:text-base"
               >
                 {showCodeEditor ? 'Hide Code' : 'Show Code'}
-              </motion.button>
+              </button>
             </div>
             
             {showCodeEditor && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.4 }}
+              <div
                 className="card-padding"
               >
                 <div className="bg-dublin-gray-900 text-green-400 p-4 sm:p-6 rounded-lg font-mono text-xs sm:text-sm overflow-x-auto">
@@ -569,7 +538,7 @@ const Skills: React.FC = () => {
                     design, and accessibility considerations - skills directly applicable to Dublin's web presence.
                   </p>
                 </div>
-              </motion.div>
+              </div>
             )}
           </div>
         </div>
@@ -585,27 +554,21 @@ const Skills: React.FC = () => {
           </div>
 
           <div className="grid-responsive-3">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
+            <div
               className="card text-center card-padding"
             >
               <div className="text-3xl sm:text-4xl mb-4">🎓</div>
               <h3 className="text-lg sm:text-xl font-bold text-dublin-primary mb-2">Bachelor's Degree</h3>
               <p className="text-dublin-gray-600 text-sm sm:text-base">Public Relations (Level 8 equivalent)</p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
+            <div
               className="card text-center card-padding"
             >
               <div className="text-3xl sm:text-4xl mb-4">🔄</div>
               <h3 className="text-lg sm:text-xl font-bold text-dublin-primary mb-2">Continuous Learning</h3>
               <p className="text-dublin-gray-600 text-sm sm:text-base">Digital marketing, municipal communications training</p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -623,49 +586,37 @@ const Skills: React.FC = () => {
           </div>
 
           <div className="grid-responsive-4">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
+            <div
               className="text-center"
             >
               <div className="text-2xl sm:text-3xl font-bold text-dublin-accent mb-2">39x</div>
               <div className="text-base sm:text-lg font-semibold mb-2">Population Scale</div>
               <div className="text-sm opacity-90">Ready for metropolitan-level campaigns</div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
+            <div
               className="text-center"
             >
               <div className="text-2xl sm:text-3xl font-bold text-dublin-accent mb-2">100%</div>
               <div className="text-base sm:text-lg font-semibold mb-2">Technology Transfer</div>
               <div className="text-sm opacity-90">All skills directly applicable</div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
+            <div
               className="text-center"
             >
               <div className="text-2xl sm:text-3xl font-bold text-dublin-accent mb-2">5x</div>
               <div className="text-base sm:text-lg font-semibold mb-2">Team Leadership</div>
               <div className="text-sm opacity-90">Scaled team management experience</div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.3 }}
+            <div
               className="text-center"
             >
               <div className="text-2xl sm:text-3xl font-bold text-dublin-accent mb-2">∞</div>
               <div className="text-base sm:text-lg font-semibold mb-2">Innovation Potential</div>
               <div className="text-sm opacity-90">Proven ability to implement new technologies</div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

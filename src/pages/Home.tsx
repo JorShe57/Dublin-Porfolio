@@ -82,11 +82,8 @@ const Home: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {campaigns.map((campaign, index) => (
-              <motion.div
+              <div
                 key={campaign.id}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
                 className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:bg-white/20 transition-colors cursor-pointer min-h-[200px] sm:min-h-[240px] flex flex-col"
               >
                 <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-r ${campaign.color} flex items-center justify-center mb-3 sm:mb-4 flex-shrink-0`}>
@@ -95,7 +92,7 @@ const Home: React.FC = () => {
                 <h3 className="text-lg sm:text-xl font-bold mb-2 flex-shrink-0">{campaign.title}</h3>
                 <p className="text-white/80 text-sm sm:text-base mb-3 sm:mb-4 flex-grow leading-relaxed">{campaign.description}</p>
                 <div className="text-dublin-accent font-semibold text-sm sm:text-base mt-auto">{campaign.impact}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -140,12 +137,7 @@ const Home: React.FC = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-center bg-dublin-primary text-white p-6 sm:p-8 rounded-xl"
-            >
+            <div className="text-center bg-dublin-primary text-white p-6 sm:p-8 rounded-xl">
               <div className="bg-white/10 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <ChartBarIcon className="h-6 w-6 sm:h-8 sm:w-8" />
               </div>
@@ -154,14 +146,9 @@ const Home: React.FC = () => {
                 Delivered 300% growth in digital engagement and €500K+ economic impact 
                 through strategic municipal marketing campaigns
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-center bg-dublin-accent text-white p-6 sm:p-8 rounded-xl"
-            >
+            <div className="text-center bg-dublin-accent text-white p-6 sm:p-8 rounded-xl">
               <div className="bg-white/10 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <SparklesIcon className="h-6 w-6 sm:h-8 sm:w-8" />
               </div>
@@ -170,14 +157,9 @@ const Home: React.FC = () => {
                 International experience combined with deep appreciation for Irish culture 
                 brings innovative approaches to traditional challenges
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-center bg-dublin-primary text-white p-6 sm:p-8 rounded-xl"
-            >
+            <div className="text-center bg-dublin-primary text-white p-6 sm:p-8 rounded-xl">
               <div className="bg-white/10 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <UserGroupIcon className="h-6 w-6 sm:h-8 sm:w-8" />
               </div>
@@ -186,7 +168,7 @@ const Home: React.FC = () => {
                 Comprehensive 90-day action plan with immediate implementation strategies 
                 and measurable outcomes for Dublin's digital transformation
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
