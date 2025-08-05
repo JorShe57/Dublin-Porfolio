@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 
 const DublinResearch: React.FC = () => {
   const [activeTab, setActiveTab] = useState('ecosystem')
-  const [hoveredPlatform, setHoveredPlatform] = useState<string | null>(null)
 
   const digitalPlatforms = [
     {
@@ -242,7 +241,7 @@ const DublinResearch: React.FC = () => {
       </button>
     )
 
-  const PlatformCard: React.FC<{ platform: any; index: number }> = ({ platform, index }) => (
+  const PlatformCard: React.FC<{ platform: any }> = ({ platform }) => (
     <div className="bg-white rounded-xl shadow-lg border border-dublin-gray-100 p-6 hover:shadow-xl transition-shadow duration-300">
       <div className="flex flex-col h-full">
         {/* Platform Header */}
@@ -374,8 +373,8 @@ const DublinResearch: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 grid-stable-heights research">
-                {digitalPlatforms.map((platform, index) => (
-                  <PlatformCard key={platform.name} platform={platform} index={index} />
+                {digitalPlatforms.map((platform) => (
+                  <PlatformCard key={platform.name} platform={platform} />
                 ))}
               </div>
 

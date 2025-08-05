@@ -2,14 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/dublin-favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     <meta name="description" content="Professional portfolio for Dublin City Council Social Media & Online Marketing Officer position - Municipal marketing expertise from Westlake to Dublin" />
     <meta name="keywords" content="Dublin City Council, Social Media Marketing, Municipal Marketing, Government Marketing, Digital Marketing, Ireland" />
+    <meta name="author" content="Jorden Shevel" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Dublin Portfolio - Municipal Marketing Excellence" />
+    <meta property="og:description" content="Professional portfolio for Dublin City Council Social Media & Online Marketing Officer position" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>Dublin Portfolio - Municipal Marketing Excellence</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Preload critical CSS for performance -->
+    <link rel="preload" href="/src/styles/index.css" as="style">
+    <!-- Prevent FOUC -->
+    <style>
+      html { visibility: hidden; opacity: 0; }
+      html.wf-active { visibility: visible; opacity: 1; }
+    </style>
     <!-- Script for SPA routing in preview mode -->
     <script type="text/javascript" src="/spa-redirect.js"></script>
   </head>

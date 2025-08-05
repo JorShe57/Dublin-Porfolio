@@ -172,8 +172,13 @@ const About: React.FC = () => {
                 <div className="relative">
                   <img 
                     src="/1701188728822.jpeg" 
-                    alt="Jorden Shevel" 
-                    className="w-32 h-32 rounded-full object-cover shadow-lg border-4 border-dublin-accent/20"
+                    alt="Jorden Shevel professional headshot"
+                    className="w-full h-auto object-cover rounded-2xl shadow-lg" 
+                    loading="lazy"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                    }}
                   />
                   <div className="absolute -bottom-2 -right-2 bg-dublin-accent text-white text-xs px-2 py-1 rounded-full">
                     Ready for Dublin!
@@ -296,8 +301,13 @@ const About: React.FC = () => {
             >
               <img 
                 src="/1_51.jpg" 
-                alt="Beautiful Irish golf course" 
-                className="w-full h-80 object-cover rounded-xl shadow-lg"
+                alt="Golf course in Dublin - representing work-life balance and community integration" 
+                className="w-full h-64 object-cover rounded-lg shadow-lg"
+                loading="lazy"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
               />
             </motion.div>
             

@@ -81,7 +81,7 @@ const Home: React.FC = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-            {campaigns.map((campaign, index) => (
+            {campaigns.map((campaign) => (
               <div
                 key={campaign.id}
                 className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:bg-white/20 transition-colors cursor-pointer min-h-[200px] sm:min-h-[240px] flex flex-col"

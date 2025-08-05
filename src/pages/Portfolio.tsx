@@ -215,7 +215,7 @@ const Portfolio: React.FC = () => {
     ? projects 
     : projects.filter(project => project.category === selectedFilter)
 
-  const ProjectCard: React.FC<{ project: any, index: number }> = ({ project, index }) => (
+  const ProjectCard: React.FC<{ project: any }> = ({ project }) => (
     <div className="card-portfolio prevent-layout-shift hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
       <div className="h-48 bg-gradient-to-br from-dublin-primary to-dublin-primary-light flex items-center justify-center relative overflow-hidden flex-shrink-0">
         <div className="absolute inset-0 bg-black opacity-20"></div>
@@ -798,8 +798,8 @@ const Portfolio: React.FC = () => {
 
               {/* Projects Grid */}
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 grid-stable-heights portfolio">
-                {filteredProjects.map((project, index) => (
-                  <ProjectCard key={project.id} project={project} index={index} />
+                {filteredProjects.map((project) => (
+                  <ProjectCard key={project.id} project={project} />
                 ))}
               </div>
             </div>

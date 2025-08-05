@@ -98,8 +98,10 @@ const Navigation: React.FC = () => {
             {/* Mobile Menu Button */}
             <motion.button
               onClick={toggleMobileMenu}
-              className="xl:hidden p-2 text-dublin-primary hover:bg-dublin-gray-50 rounded-lg transition-colors duration-200"
-              aria-label="Toggle mobile menu"
+              className="xl:hidden p-3 text-dublin-primary hover:bg-dublin-gray-50 rounded-lg transition-colors duration-200 min-h-[44px] min-w-[44px]"
+              style={{ touchAction: 'manipulation' }}
+              aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
+              aria-expanded={isMobileMenuOpen}
               whileTap={{ scale: 0.95 }}
             >
               <motion.div

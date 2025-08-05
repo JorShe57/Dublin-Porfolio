@@ -302,7 +302,7 @@ const Skills: React.FC = () => {
           </div>
 
           <div className="grid-responsive-3 xl:grid-cols-3 grid-stable-heights skills">
-            {skillCategories.map((category, categoryIndex) => (
+            {skillCategories.map((category) => (
               <div
                 key={category.category}
                 className="card-skills prevent-layout-shift"
@@ -317,7 +317,7 @@ const Skills: React.FC = () => {
                 </div>
 
                 <div className="card-padding space-y-4 flex-grow">
-                  {category.skills.map((skill, skillIndex) => (
+                  {category.skills.map((skill) => (
                     <div
                       key={skill.name}
                       className="group cursor-pointer smooth-layout-fast"
@@ -379,7 +379,7 @@ const Skills: React.FC = () => {
           </div>
 
           <div className="space-y-6 lg:space-y-8">
-            {campaigns.map((campaign, index) => (
+            {campaigns.map((campaign) => (
               <div
                 key={campaign.id}
                 className={`card-interactive ${
@@ -474,7 +474,7 @@ const Skills: React.FC = () => {
             </div>
             <div className="card-padding">
               <div className="space-y-4">
-                {requirementMapping.map((item, index) => (
+                {requirementMapping.map((item) => (
                   <div
                     key={item.requirement}
                     className="flex items-center justify-between p-3 sm:p-4 bg-dublin-gray-50 rounded-lg"

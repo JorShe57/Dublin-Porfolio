@@ -2,6 +2,12 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* Critical CSS - Load First */
+html {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
 /* Custom base styles - Mobile First */
 @layer base {
   * {
@@ -12,12 +18,35 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+    /* Better text rendering */
+    text-rendering: optimizeLegibility;
+    /* Improve tap targets on mobile */
+    -webkit-tap-highlight-color: rgba(40, 167, 69, 0.2);
   }
   
   body {
     @apply bg-white text-dublin-gray-800 font-sans leading-relaxed;
     font-feature-settings: 'rlig' 1, 'calt' 1;
     overflow-x: hidden;
+    /* Prevent zoom on inputs on iOS */
+    -webkit-text-size-adjust: 100%;
+    /* Better font rendering */
+    font-display: swap;
+  }
+
+  /* Fix for mobile inputs */
+  input, textarea, select {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+
+  /* Better image handling */
+  img {
+    max-width: 100%;
+    height: auto;
+    /* Prevent layout shift during loading */
+    object-fit: cover;
   }
 
   /* Improved focus styles for accessibility */
@@ -36,6 +65,13 @@
       scroll-behavior: smooth;
     }
   }
+
+  /* Fix for mobile sticky elements */
+  @supports (-webkit-overflow-scrolling: touch) {
+    body {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
 }
 
 /* Mobile-First Component Styles */
@@ -49,7 +85,11 @@
            transform hover:scale-[1.02] active:scale-[0.98]
            focus:outline-none focus:ring-2 focus:ring-dublin-primary/50 focus:ring-offset-2
            shadow-md hover:shadow-lg
-           disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
+           /* Better mobile tap targets */
+           min-h-[44px] min-w-[44px];
+    /* Prevent double-tap zoom on iOS */
+    touch-action: manipulation;
   }
   
   .btn-accent {
@@ -60,7 +100,11 @@
            transform hover:scale-[1.02] active:scale-[0.98]
            focus:outline-none focus:ring-2 focus:ring-dublin-accent/50 focus:ring-offset-2
            shadow-md hover:shadow-lg
-           disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
+           /* Better mobile tap targets */
+           min-h-[44px] min-w-[44px];
+    /* Prevent double-tap zoom on iOS */
+    touch-action: manipulation;
   }
 
   .btn-secondary {
@@ -71,7 +115,11 @@
            transition-all duration-200 
            transform hover:scale-[1.02] active:scale-[0.98]
            focus:outline-none focus:ring-2 focus:ring-dublin-primary/50 focus:ring-offset-2
-           shadow-md hover:shadow-lg;
+           shadow-md hover:shadow-lg
+           /* Better mobile tap targets */
+           min-h-[44px] min-w-[44px];
+    /* Prevent double-tap zoom on iOS */
+    touch-action: manipulation;
   }
 
   /* Navigation styles - removed since we're handling in component */
