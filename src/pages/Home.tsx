@@ -1,7 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import CountUp from 'react-countup'
 import { 
   ArrowRightIcon, 
   GlobeAltIcon, 
@@ -48,13 +47,6 @@ const Home: React.FC = () => {
       color: 'from-blue-500 to-cyan-600',
       icon: UserGroupIcon
     }
-  ]
-
-  const achievements = [
-    { number: 2500000, label: 'Citizens Reached', suffix: '+' },
-    { number: 1200000, label: 'Economic Impact', prefix: '€', suffix: '+' },
-    { number: 300, label: 'Engagement Growth', suffix: '%' },
-    { number: 4, label: 'Campaign Experiences', suffix: '' }
   ]
 
   const skills = [
